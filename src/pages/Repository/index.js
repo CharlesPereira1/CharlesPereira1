@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react';
-import { FaGithubAlt } from 'react-icons/fa';
+import { FaGithubAlt, FaSearch } from 'react-icons/fa';
 import { FiGitPullRequest } from 'react-icons/fi';
 import { GoRepoForked, GoStar } from 'react-icons/go';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ import ScrollLoading from '~/components/ScrollLoading';
 import {
   repoRequestSearch,
   repoRequestNextPage,
-} from '~/store1/modules/repository/actions';
+} from '~/store/modules/repository/actions';
 import { colors } from '~/styles/colors';
 
 import { Form, SubmitButton, List } from './styles';
@@ -28,12 +28,12 @@ export default function Repository() {
 
   const [search, setSearch] = useState('');
   const [newFilter, setNewFilter] = useState('');
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
   const [scrollRadio, setScrollRadio] = useState(null);
 
   // recupera dados do input
-  function handleSearchMain(value) {
+  const handleSearchMain = value => {
     setSearch(value);
   }
 
@@ -43,7 +43,7 @@ export default function Repository() {
       repoRequestSearch({
         search: search || filters,
         page,
-        filter: newFilter || 'forks1',
+        filter: newFilter || 'forks',
         perPage,
       })
     );
@@ -79,10 +79,23 @@ export default function Repository() {
           perPage,
         })
       );
-      // dispatch(repoSearchSuccess(page));
     }
-  }, [scrollRadio]);// eslint-disable-line
+  }, [scrollRadio]); // eslint-disable-line
 
+  const handleFilter = f => {
+    setNewFilter(f.target.value);
+  }
+
+  useEffect(() => {
+    dispatch(
+      repoRequestSearch({
+        search: search || filters,
+        page,
+        filter: newFilter || 'forks',
+        perPage,
+      })
+    );
+  }, [newFilter]); // eslint-disable-line
 
   return (
     <Container>
@@ -92,19 +105,17 @@ export default function Repository() {
       </h1>
 
       <Form>
-        <InputSearch
-          handleSearch={handleSearchMain}
-          placeholder="Buscar repositório"
-        />
+        <div>
+          <InputSearch handleSearch={handleSearchMain} />
+          <FaSearch size={15} color={colors.primary} />
+        </div>
 
-        {/* <select value={newFilter} onChange={hadleFilter}>
-          <option selected value="stars">
-            stars
-          </option>
+        <select defaultValue="stars" value={newFilter} onChange={handleFilter}>
+          <option selected value="stars">stars</option>
           <option value="forks">forks</option>
           <option value="issues">issues</option>
           <option value="updates">updates</option>
-        </select> */}
+        </select>
       </Form>
 
       <h2>{filters}</h2>

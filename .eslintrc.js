@@ -24,7 +24,11 @@ module.exports = {
   rules: {
     'eslint-disable-next-line ': 'off',
     'import-helpers/order-imports': 'error',
+    'react-hooks/exhaustive-deps': 'off',
+    'react/prop-types': 'off',
     'no-unused-vars': 'error',
+    'eslint-disable no-unused-vars': 'off',
+    'react/jsx-props-no-spreading': 'off',
     'prettier/prettier': 'off',
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
     'import/prefer-default-export': 'off',

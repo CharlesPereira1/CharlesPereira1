@@ -22,6 +22,14 @@ const Container = styled.div`
     }
   }
 
+  h2 {
+    margin-top: 10px;
+    font-size: 22px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
   > a {
     padding-top: 10px;
     font-size: 16px;

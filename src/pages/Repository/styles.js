@@ -7,60 +7,69 @@ export const Form = styled.div`
   margin-top: 30px;
   display: flex;
   flex-direction: row;
+  align-items: center;
 
-  input {
+  div {
     flex: 1;
+
+    input {
+      flex: 1;
+      width: 99%;
+      border: 1px solid ${colors.border};
+      padding: 10px 35px 10px 10px;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    svg{
+      text-align: center;
+      margin-left: -30px;
+    }
+
+  }
+
+  select {
+    max-width: 90px;
+    padding: 10px 5px;
     border: 1px solid ${colors.border};
-    padding: 10px 15px;
     border-radius: 4px;
     font-size: 16px;
   }
 `;
 
-const rotate = keyframes`
-  from {
-    transfomr: rotate(0deg);
-  } to {
-    transfomr: rotate(360deg);
-  }
-`;
+// export const SubmitButton = styled.button.attrs(props => ({
+//   type: 'submit',
+// }))`
+//   display: flex;
+//   align-items: center;
+//   text-align: center;
+//   border: none;
+//   padding: 0 15px;
+//   background: none;
+//   margin-left: -40px;
 
-export const SubmitButton = styled.button.attrs(props => ({
-  type: 'submit',
-  disabled: props.loading,
-}))`
-  display: flex;
-  align-items: center;
-  text-align: center;
-  border: none;
-  padding: 0 15px;
-  background: none;
-  margin-left: -40px;
+//   &[disabled] {
+//     cursor: not-allowed;
+//     opacity: 0.6;
+//   }
 
-  &[disabled] {
-    cursor: not-allowed;
-    opacity: 0.6;
-  }
-
-  svg {
-    color: ${colors.primary};
-    /* ${props =>
-    props.loading &&
-    css`
-        animation: ${rotate} 2s linear infinite;
-      `} */
-  }
-`;
+//   svg {
+//     color: ${colors.primary};
+//   }
+// `;
 
 export const List = styled.ul`
-  max-width: 700px;
+  box-sizing: border-box;
+
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
+  grid-template-columns: 50% 50%;
+  grid-gap: 5px;
   margin-top: 15px;
   justify-content: space-between;
 
   li {
+    max-width: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     background: ${colors.background};

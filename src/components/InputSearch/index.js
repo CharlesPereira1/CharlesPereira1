@@ -1,9 +1,8 @@
 import React from 'react';
-import { MdSearch } from 'react-icons/md';
 
 import { debounce } from 'lodash';
 
-// import { Container, Search } from './styles';
+// import { Container } from './styles';
 
 export default function InputSearch({ handleSearch, ...rest }) {
   const search = debounce(value => handleSearch(value), 400);
@@ -14,8 +13,8 @@ export default function InputSearch({ handleSearch, ...rest }) {
 
   return (
     <>
-      <MdSearch size={24} />
-      <input onChange={handleChange} {...rest} />
+      <input onChange={handleChange} placeholder="Buscar repositório" />
     </>
   );
+
 }

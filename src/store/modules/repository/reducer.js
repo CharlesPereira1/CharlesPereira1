@@ -3,7 +3,7 @@ import produce from 'immer';
 const INITIAL_STATE = {
   search: '',
   filter: '',
-  page: 0,
+  page: '',
   perPage: '',
   qtdResult: 0,
   plusPage: false,
@@ -12,13 +12,13 @@ const INITIAL_STATE = {
   repos: [],
   // repos: [{ repository: [] }],
 };
-
 export default function repo(state = INITIAL_STATE, action) {
   return produce(state, draft => {
     switch (action.type) {
       case '@repo/REPO_REQUEST_SEARCH': {
         const newRepositories = [...draft.repos];
         draft.repos = newRepositories;
+        draft.page = action.payload.page;
         draft.loading = true;
         break;
       }
@@ -36,11 +36,7 @@ export default function repo(state = INITIAL_STATE, action) {
       }
 
       case '@repo/REPO_REQUEST_NEXT_PAGE': {
-        // const counter = action.payload.data.items.length;
-        // console.log(counter);
-        if (draft.page >= 1 && ) {
-          draft.plusPage = true;
-        }
+        draft.plusPage = true;
         break;
       }
 
