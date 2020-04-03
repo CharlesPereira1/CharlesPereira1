@@ -35,6 +35,7 @@ export default function Repository() {
   // recupera dados do input
   const handleSearchMain = value => {
     setSearch(value);
+    setSearch('');
   }
 
   // quando o nome do input mudar dispara a ação dos parametros
@@ -47,6 +48,7 @@ export default function Repository() {
         perPage,
       })
     );
+    setSearch('');
   }, [search]); // eslint-disable-line
 
   /**

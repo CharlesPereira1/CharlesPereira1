@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { all, takeLatest, call, put, delay, select } from 'redux-saga/effects';
+import { all, takeLatest, call, put, delay } from 'redux-saga/effects';
 
 import api from '~/services/api';
 

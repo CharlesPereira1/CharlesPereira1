@@ -9,11 +9,10 @@ import Container from '~/components/Container';
 import api from '~/services/api';
 import { colors } from '~/styles/colors';
 
-import { Loading, List } from './styles';
+import { List } from './styles';
 
 export default function PullRequest() {
   const [request, setRequest] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const match = useRouteMatch('/pullrequests/:request/pulls');
 
@@ -27,7 +26,7 @@ export default function PullRequest() {
     }
 
     loadRequest();
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <Container>
@@ -39,7 +38,7 @@ export default function PullRequest() {
       <List>
         {request.map(repo => (
           <li key={repo.id}>
-            <a href={repo.html_url}>
+            <a href={repo.html_url} target="_blank" rel="noopener noreferrer" >
               <img src={repo.user.avatar_url} alt={repo.user.login} />
             </a>
 
@@ -53,7 +52,7 @@ export default function PullRequest() {
                 {format(parseISO(repo.created_at), 'MM/dd/yyyy')}
               </span>
               <span>
-                <a href={repo.html_url}>
+                <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
                   <FiGitPullRequest size={14} color={colors.primary} />
                   Pull Request
                 </a>
@@ -69,22 +68,3 @@ export default function PullRequest() {
     </Container>
   );
 }
-
-// export default class PullRequest extends Component {
-//   state = {
-//     repository: [],
-//     loading: true,
-//   }
-//   async componentDidMount() {
-//     const { match } = this.props;
-//     const repoName = decodeURIComponent(match.params.request);
-
-//     const res = await api.get(`/repos/${repoName}`);
-
-//     console.log(res);
-//   }
-
-//   render() {
-//     return <h1>Pull Request</h1>;
-//   }
-// }

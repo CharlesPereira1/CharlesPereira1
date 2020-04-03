@@ -30,6 +30,7 @@ module.exports = {
     'eslint-disable no-unused-vars': 'off',
     'react/jsx-props-no-spreading': 'off',
     'prettier/prettier': 'off',
+    'react/jsx-no-target-blank': 'off',
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
     'import/prefer-default-export': 'off',
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],

@@ -36,7 +36,10 @@ export default function repo(state = INITIAL_STATE, action) {
       }
 
       case '@repo/REPO_REQUEST_NEXT_PAGE': {
-        draft.plusPage = true;
+        const load = [draft.loading = false];
+        if (load) {
+          draft.plusPage = true;
+        }
         break;
       }
 

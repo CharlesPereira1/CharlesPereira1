@@ -6,7 +6,7 @@ export default reducers => {
     {
       key: 'FrontEnd-Challenge',
       storage,
-      whitelist: ['repository'],
+      whitelist: ['repository', 'pullRequest'],
     },
     reducers
   );

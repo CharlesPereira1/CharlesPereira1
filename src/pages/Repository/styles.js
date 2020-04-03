@@ -1,5 +1,5 @@
 import { darken } from 'polished';
-import styled, { keyframes, css } from 'styled-components';
+import styled from 'styled-components';
 
 import { colors } from '../../styles/colors';
 
