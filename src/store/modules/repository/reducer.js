@@ -10,15 +10,11 @@ const INITIAL_STATE = {
   loading: false,
   totalCount: '',
   repos: [],
-  // repos: [{ repository: [] }],
 };
 export default function repo(state = INITIAL_STATE, action) {
   return produce(state, draft => {
     switch (action.type) {
       case '@repo/REPO_REQUEST_SEARCH': {
-        const newRepositories = [...draft.repos];
-        draft.repos = newRepositories;
-        draft.page = action.payload.page;
         draft.loading = true;
         break;
       }
@@ -36,8 +32,7 @@ export default function repo(state = INITIAL_STATE, action) {
       }
 
       case '@repo/REPO_REQUEST_NEXT_PAGE': {
-        const load = [draft.loading = false];
-        if (load) {
+        if (draft.page >= 1) {
           draft.plusPage = true;
         }
         break;

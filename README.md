@@ -40,3 +40,12 @@ Se possível deixar o fork público para facilitar a inspeção do código.
 ### **ATENÇÃO** ###
 
 Não se deve tentar fazer o PUSH diretamente para ESTE repositório!
+
+# Instructions
+
+First, we need to start the api. For that you'll need to:
+```
+To start front-end, execute the following commands on frontend folder:
+```
+yarn
+yarn start

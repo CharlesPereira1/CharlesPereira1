@@ -16,7 +16,7 @@ import {
 } from '~/store/modules/repository/actions';
 import { colors } from '~/styles/colors';
 
-import { Form, SubmitButton, List } from './styles';
+import { Form, List } from './styles';
 
 export default function Repository() {
   const scrollObserver = useRef();
@@ -35,33 +35,28 @@ export default function Repository() {
   // recupera dados do input
   const handleSearchMain = value => {
     setSearch(value);
-    setSearch('');
   }
 
   // quando o nome do input mudar dispara a ação dos parametros
   useEffect(() => {
     dispatch(
       repoRequestSearch({
-        search: search || filters,
-        page,
+        search: search || 'javascript',
+        page: 1,
         filter: newFilter || 'forks',
         perPage,
       })
     );
-    setSearch('');
   }, [search]); // eslint-disable-line
 
   /**
    * Scroll infinito
-   *
-   * função utilizando o intersection para verificar se a pagina foi toda lida
-   * inicia com valor zero se nao foi lida e no fim traz valor 1 para lida
    */
   const intersectionObserver = new IntersectionObserver(entries => {
     const radio = entries[0].intersectionRatio;
     setScrollRadio(radio);
   });
-  // faz um disconnect depois de lida para voltar ao estado de zero novamente
+
   useEffect(() => {
     intersectionObserver.observe(scrollObserver.current);
     return () => {
@@ -75,7 +70,7 @@ export default function Repository() {
       setPage(newPage);
       dispatch(
         repoRequestNextPage({
-          search: search || filters,
+          search: search || 'javascript',
           page,
           filter: newFilter || 'forks',
           perPage,
@@ -91,7 +86,7 @@ export default function Repository() {
   useEffect(() => {
     dispatch(
       repoRequestSearch({
-        search: search || filters,
+        search: search || 'javascript',
         page,
         filter: newFilter || 'forks',
         perPage,
@@ -112,7 +107,7 @@ export default function Repository() {
           <FaSearch size={15} color={colors.primary} />
         </div>
 
-        <select defaultValue="stars" value={newFilter} onChange={handleFilter}>
+        <select value={newFilter} onChange={handleFilter}>
           <option selected value="stars">stars</option>
           <option value="forks">forks</option>
           <option value="issues">issues</option>
@@ -120,7 +115,7 @@ export default function Repository() {
         </select>
       </Form>
 
-      <h2>{filters}</h2>
+      <h2>{filters || 'JavaScript'}</h2>
       {loading ? (
         <Loading />
       ) : (

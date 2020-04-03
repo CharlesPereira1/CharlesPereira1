@@ -8,22 +8,20 @@ import { repoSearchSuccess, repoFailure, repoNextPageSuccess } from './actions';
 export function* searchinRepo({ payload }) {
   try {
     // cria os parametros a serem passados para o action
-    const { search = 'javascript', page, filter, perPage } = payload.data;
+    const { search, page, filter, perPage } = payload.data;
 
     // define os parametros no link da api
     const res = yield call(api.get, 'search/repositories', {
       params: {
-        q: search,
+        q: search || 'javascript',
         sort: filter || 'stars', // 'stars',
-        page,
+        page: 1,
         per_page: perPage,
         order: 'desc',
       },
     });
-    // delay de 2ms
     yield delay(2000);
 
-    // const filterActual = filter;
     const repos = res.data;
 
     // passa os parametros para o action vindos no repository.js
@@ -40,8 +38,8 @@ export function* searchInSearch({ payload }) {
     // define os parametros no link da api
     const res = yield call(api.get, 'search/repositories', {
       params: {
-        q: search,
-        sort: filter || 'stars', // 'stars',
+        q: search || 'javascript',
+        sort: filter || 'stars',
         page,
         per_page: perPage,
         order: 'desc',
@@ -50,7 +48,6 @@ export function* searchInSearch({ payload }) {
     // delay de 2ms
     yield delay(1000);
 
-    // const filterActual = filter;
     const repos = res.data;
     yield put(repoNextPageSuccess(repos, page, filter, perPage));
   } catch (error) {

@@ -59,7 +59,7 @@ export default function PullRequest() {
               </span>
             </div>
             <strong maxRows={3}> </strong>
-            <textarea ols="1" rows="12">
+            <textarea ols="1" rows="12" >
               {repo.body}
             </textarea>
           </li>

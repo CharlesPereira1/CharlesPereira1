@@ -37,27 +37,6 @@ export const Form = styled.div`
   }
 `;
 
-// export const SubmitButton = styled.button.attrs(props => ({
-//   type: 'submit',
-// }))`
-//   display: flex;
-//   align-items: center;
-//   text-align: center;
-//   border: none;
-//   padding: 0 15px;
-//   background: none;
-//   margin-left: -40px;
-
-//   &[disabled] {
-//     cursor: not-allowed;
-//     opacity: 0.6;
-//   }
-
-//   svg {
-//     color: ${colors.primary};
-//   }
-// `;
-
 export const List = styled.ul`
   box-sizing: border-box;
 
